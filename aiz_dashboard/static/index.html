@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Megascale & AI Zones Roadmap Dashboard</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://www.gstatic.com/images/branding/product/1x/gcp_64dp.png">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-area">
+        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32"><path fill="#1976d2" d="M38.193,18.359c-0.771-2.753-2.319-5.177-4.397-7.03l-4.598,4.598	c1.677,1.365,2.808,3.374,3.014,5.648v1.508c0.026,0,0.05-0.008,0.076-0.008c2.322,0,4.212,1.89,4.212,4.212S34.61,31.5,32.288,31.5	c-0.026,0-0.05-0.007-0.076-0.008V31.5h-6.666H24V38h8.212v-0.004c0.026,0,0.05,0.004,0.076,0.004C38.195,38,43,33.194,43,27.288	C43,23.563,41.086,20.279,38.193,18.359z"/><path fill="#ffe082" d="M19.56,25.59l4.72-4.72c-0.004-0.005-0.008-0.009-0.011-0.013l-4.717,4.717	C19.554,25.579,19.557,25.584,19.56,25.59z" opacity=".5"/><path fill="#90caf9" d="M19.56,25.59l4.72-4.72c-0.004-0.005-0.008-0.009-0.011-0.013l-4.717,4.717	C19.554,25.579,19.557,25.584,19.56,25.59z" opacity=".5"/><path fill="#ff3d00" d="M24,7.576c-8.133,0-14.75,6.617-14.75,14.75c0,0.233,0.024,0.46,0.035,0.69h6.5	c-0.019-0.228-0.035-0.457-0.035-0.69c0-4.549,3.701-8.25,8.25-8.25c1.969,0,3.778,0.696,5.198,1.851l4.598-4.598	C31.188,9.003,27.761,7.576,24,7.576z"/><path fill="#90caf9" d="M15.712,31.5L15.712,31.5c-0.001,0-0.001,0-0.002,0c-0.611,0-1.188-0.137-1.712-0.373	l-4.71,4.71C11.081,37.188,13.301,38,15.71,38c0.001,0,0.001,0,0.002,0v0H24v-6.5H15.712z" opacity=".5"/><path fill="#4caf50" d="M15.712,31.5L15.712,31.5c-0.001,0-0.001,0-0.002,0c-0.611,0-1.188-0.137-1.712-0.373l-4.71,4.71	C11.081,37.188,13.301,38,15.71,38c0.001,0,0.001,0,0.002,0v0H24v-6.5H15.712z"/><path fill="#ffc107" d="M11.5,27.29c0-2.32,1.89-4.21,4.21-4.21c1.703,0,3.178,1.023,3.841,2.494l4.717-4.717	c-1.961-2.602-5.065-4.277-8.559-4.277C9.81,16.58,5,21.38,5,27.29c0,3.491,1.691,6.59,4.288,8.547l4.71-4.71	C12.53,30.469,11.5,28.999,11.5,27.29z"/></svg>
+        <h1>Megascale & AI Zones Roadmap Dashboard</h1>
+      </div>
+      <div class="time-badge" id="current-time">
+        Local: 2026-05-19
+      </div>
+    </header>
+
+    <main class="dashboard-content" style="display: flex; flex-direction: column; gap: 20px;">
+      <!-- User Guide Banner -->
+      <section class="guide-panel card animate-fade-in">
+        <details>
+          <summary class="guide-summary">📖 How to read this dashboard</summary>
+          <div class="guide-content">
+            <ol>
+              <li><strong>Overview</strong>: Upon loading, the dashboard displays the GANTT timeline and execution status metrics for all AI Zones across various PLC (Project Life Cycle) stages.</li>
+              <li><strong>Filters</strong>: Use the dropdown filters at the top (Region, Customer, Chip Type, etc.) to dynamically narrow down your search. Click "Reset Filters" to clear.</li>
+              <li><strong>GANTT Bars</strong>: Each bar indicates the duration from <strong>Preflight Start</strong> to <strong>Launch</strong>. The bar is divided by the <strong>FHO date</strong> in the middle:
+                <ul>
+                  <li>Left translucent bar segment: Preflight Start to FHO date.</li>
+                  <li>Right solid bar segment: FHO date to Launch.</li>
+                </ul>
+              </li>
+              <li><strong>Details tooltip</strong>: Hover your mouse cursor over any GANTT bar to view a details card (BDP Useable MW, Site Type, Contract Status, Customer, etc.).</li>
+              <li><strong>PLC Stages Color Coding</strong>: See the legend at the bottom of the page to match colors with stages (Launched, Execution, Planning, etc.).</li>
+            </ol>
+          </div>
+        </details>
+      </section>
+
+      <!-- Filter Panel -->
+      <section class="filter-panel card animate-fade-in">
+        <div class="filter-group">
+          <label for="filter-region">Region</label>
+          <div class="custom-select-wrapper">
+            <select id="filter-region">
+              <option value="ALL">All Regions</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-plc">PLC Stage</label>
+          <div class="custom-select-wrapper">
+            <select id="filter-plc">
+              <option value="ALL">All Stages</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-customer">Customer</label>
+          <div class="custom-select-wrapper">
+            <select id="filter-customer">
+              <option value="ALL">All Customers</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-chip-type">Chip Type</label>
+          <div class="custom-select-wrapper">
+            <select id="filter-chip-type">
+              <option value="ALL">All Chip Types</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-chip">Chip</label>
+          <div class="custom-select-wrapper">
+            <select id="filter-chip">
+              <option value="ALL">All Chips</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-pa">PA</label>
+          <div class="custom-select-wrapper">
+            <select id="filter-pa">
+              <option value="ALL">All PAs</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-site-type">Site Type</label>
+          <div class="custom-select-wrapper">
+            <select id="filter-site-type">
+              <option value="ALL">All Site Types</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-mega-type">Mega Type</label>
+          <div class="custom-select-wrapper">
+            <select id="filter-mega-type">
+              <option value="ALL">All Types</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-actions">
+          <button id="reset-filters" class="btn-secondary" style="white-space: nowrap;">Reset Filters</button>
+        </div>
+      </section>
+
+      <!-- KPI Metrics -->
+      <section class="metrics-grid animate-fade-in">
+        <div class="metric-card card">
+          <div class="metric-info">
+            <span class="metric-label">Total Zones</span>
+            <span class="metric-val" id="metric-total">0</span>
+          </div>
+          <div class="metric-icon blue">📍</div>
+        </div>
+        <div class="metric-card card">
+          <div class="metric-info">
+            <span class="metric-label">Launched</span>
+            <span class="metric-val" id="metric-launched">0</span>
+          </div>
+          <div class="metric-icon green">🚀</div>
+        </div>
+        <div class="metric-card card">
+          <div class="metric-info">
+            <span class="metric-label">In Execution</span>
+            <span class="metric-val" id="metric-execution">0</span>
+          </div>
+          <div class="metric-icon orange">⚙️</div>
+        </div>
+        <div class="metric-card card">
+          <div class="metric-info">
+            <span class="metric-label">Planning</span>
+            <span class="metric-val" id="metric-planning">0</span>
+          </div>
+          <div class="metric-icon purple">🗓️</div>
+        </div>
+      </section>
+
+      <!-- GANTT Chart Section -->
+      <section class="gantt-section card animate-fade-in">
+        <div class="gantt-wrapper">
+          <div class="gantt-container" id="gantt-container">
+            <!-- Timeline Header (filled dynamically) -->
+            <div class="gantt-header-track" id="gantt-header-track">
+              <div class="gantt-header-title">AI Zone Details</div>
+              <!-- Grid header ticks and quarters will be injected here -->
+            </div>
+            
+            <!-- Grid lines overlay -->
+            <div class="gantt-grid-lines" id="gantt-grid-lines"></div>
+            
+            <!-- GANTT Chart Rows (filled dynamically) -->
+            <div class="gantt-rows-container" id="gantt-rows-container">
+              <div class="loading-indicator">Loading AI Zone roadmap data...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="legend-panel card animate-fade-in">
+        <h3>PLC Stage Color Legend</h3>
+        <div class="legend-grid">
+          <div class="legend-item">
+            <div class="legend-bar stage-5">
+              <span class="gantt-bar-segment preflight-to-fho" style="width: 50%;"></span>
+              <span class="gantt-bar-segment fho-to-launch" style="width: 50%;"></span>
+            </div>
+            <span class="legend-label">5 - Launched</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-bar stage-4">
+              <span class="gantt-bar-segment preflight-to-fho" style="width: 50%;"></span>
+              <span class="gantt-bar-segment fho-to-launch" style="width: 50%;"></span>
+            </div>
+            <span class="legend-label">4 - Execution</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-bar stage-3">
+              <span class="gantt-bar-segment preflight-to-fho" style="width: 50%;"></span>
+              <span class="gantt-bar-segment fho-to-launch" style="width: 50%;"></span>
+            </div>
+            <span class="legend-label">3 - Planning</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-bar stage-default">
+              <span class="gantt-bar-segment preflight-to-fho" style="width: 50%;"></span>
+              <span class="gantt-bar-segment fho-to-launch" style="width: 50%;"></span>
+            </div>
+            <span class="legend-label">Other / Default Stages</span>
+            <span class="legend-contact" style="margin-left: 20px; color: #ffffff; font-size: 0.85rem;">Contact jameszpark@ for
+              questions or suggestions!</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Interactive Tooltip -->
+  <div id="gantt-tooltip" class="tooltip hidden"></div>
+
+  <!-- JavaScript Modules -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
